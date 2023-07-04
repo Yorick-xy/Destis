@@ -21,25 +21,65 @@ class Destis:
             user_input = self.hmi.get_user_input()
 
             if user_input == 'exit':
-                self.hmi.display_goodbye_message()
+                self.hmi.display_exit_message()
                 break
 
             command = self.nlp.process_input(user_input)
 
             if command == 'home_automation':
-                self.home_automation.execute_command()
+                self.manage_home_automation()
 
             elif command == 'answering_questions':
                 self.answering_questions.answer_questions()
 
             elif command == 'online_services':
-                self.online_services.access_services()
+                self.manage_online_services()
 
             elif command == 'speech_recognition':
                 self.speech_recognition.start_recognition()
 
             else:
                 self.hmi.display_unknown_command()
+
+    def manage_home_automation(self):
+        self.hmi.display_home_automation_options()
+
+        while True:
+            user_input = self.hmi.get_user_input()
+
+            if user_input == 'stop':
+                break
+
+            if user_input == 'add_light':
+                light_name = self.hmi.get_user_input("Enter the light name: ")
+                self.home_automation.add_light(light_name)
+
+            elif user_input == 'add_outlet':
+                outlet_name = self.hmi.get_user_input("Enter the outlet name: ")
+                self.home_automation.add_outlet(outlet_name)
+
+            elif user_input == 'turn_on_light':
+                light_name = self.hmi.get_user_input("Enter the light name: ")
+                self.home_automation.turn_on_light(light_name)
+
+            elif user_input == 'turn_off_light':
+                light_name = self.hmi.get_user_input("Enter the light name: ")
+                self.home_automation.turn_off_light(light_name)
+
+            elif user_input == 'switch_on_outlet':
+                outlet_name = self.hmi.get_user_input("Enter the outlet name: ")
+                self.home_automation.switch_on_outlet(outlet_name)
+
+            elif user_input == 'switch_off_outlet':
+                outlet_name = self.hmi.get_user_input("Enter the outlet name: ")
+                self.home_automation.switch_off_outlet(outlet_name)
+
+            else:
+                self.hmi.display_unknown_command()
+
+    def manage_online_services(self):
+        query = self.hmi.get_user_input("Enter your search query: ")
+        self.online_services.search_info(query)
 
 if __name__ == '__main__':
     destis = Destis()
