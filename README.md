@@ -1,4 +1,4 @@
-CyberJARVIS/
+Destis/
 │
 ├── src/                   # Code source principal
 │   │
@@ -15,7 +15,12 @@ CyberJARVIS/
 │   │   ├── nlp.py         
 │   │   ├── speech_recognition.py
 │   │   ├── speech_synthesis.py 
-│   │   ├── chatbot.py     
+│   │   ├── config.py 
+│   │   ├── core.py 
+│   │   ├── data_preprocessing.py  
+│   │   ├── models.py
+│   │   ├── testing.py  
+│   │   ├── chatbot.py    
 │   │   └── vision.py      
 │   │
 │   ├── home_automation/   # Domotique

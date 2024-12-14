@@ -3,3 +3,16 @@ Prototypage rapide : Commence par des modules simples pour valider chaque foncti
 Tests itératifs : Ajoute progressivement des fonctionnalités plus complexes.
 Intégration domotique : Développe un premier lien simple entre MQTT et un appareil connecté.
 Personnalisation NLP : Entraîne un chatbot personnalisé avec des réponses spécifiques pour tes routines domotiques.
+
+echo "# Destis" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Yorick-xy/Destis.git
+git push -u origin main
+
+
+git remote add origin https://github.com/Yorick-xy/Destis.git
+git branch -M main
+git push -u origin main

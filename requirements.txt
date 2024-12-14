@@ -1,0 +1,9 @@
+numpy
+opencv-python
+pyaudio
+speechrecognition
+pyttsx3
+flask
+paho-mqtt
+scikit-learn
+tensorflow==2.13.1  # Exemple de version compatible avec Python 3.9 à 3.10
