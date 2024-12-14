@@ -1,0 +1,5 @@
+Plan d'action pour "Destis"
+Prototypage rapide : Commence par des modules simples pour valider chaque fonction (robotique, IA, domotique).
+Tests itératifs : Ajoute progressivement des fonctionnalités plus complexes.
+Intégration domotique : Développe un premier lien simple entre MQTT et un appareil connecté.
+Personnalisation NLP : Entraîne un chatbot personnalisé avec des réponses spécifiques pour tes routines domotiques.
