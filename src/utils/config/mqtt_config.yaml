@@ -1,0 +1,14 @@
+mqtt:
+  broker: "mqtt://localhost"    # Adresse du broker MQTT
+  port: 1883                   # Port par défaut pour MQTT
+  username: "yorick"             # Nom d'utilisateur (si nécessaire)
+  password: "root"         # Mot de passe (si nécessaire)
+  client_id: "destis_client"   # Identifiant unique pour le client MQTT
+  keepalive: 60                # Temps de maintien de la connexion en secondes
+  topics:
+    subscribe:                 # Sujets pour s'abonner
+      - "home/sensors/#"
+      - "home/commands/#"
+    publish:                   # Sujets pour publier
+      - "home/feedback"
+      - "home/status"

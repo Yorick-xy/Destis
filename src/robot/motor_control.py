@@ -1,33 +1,64 @@
 # robot/motor_control.py
 import sys
+
+#from mock_gpio import GPIO
+from .mock_gpio import GPIO
+#from src.robot.mock_gpio import GPIO
+#from mock_gpio import GPIO
 import os
+import sys
+sys.path.append('/Users/yorick/Documents/05_Dev/Destis/src/robot')
 
-from mock_gpio import GPIO
+import mock_gpio as GPIO
 
 
-# try:
-#     import RPi.GPIO as GPIO
-# except ImportError:
-#     import mock_gpio as GPIO  # Utiliser le mock sur Mac
+#if os.getenv("USE_MOCK_GPIO", "false").lower() == "true":
+#    from mock_gpio import GPIO
+#else:
+#    import RPi.GPIO as GPIO
 
-# Maintenant tu peux utiliser GPIO comme d'habitude sans erreur sur Mac
+try:
+    import RPi.GPIO as GPIO
+    GPIO_AVAILABLE = True
+except ImportError:
+    try:
+        import mock_gpio as GPIO
+        GPIO_AVAILABLE = False
+    except ImportError:
+        print("Erreur : Aucune bibliothèque GPIO disponible. Utilisez un Raspberry Pi ou un module de simulation.")
+        raise
+
 class MotorControl:
     def __init__(self, motor_pins):
         self.motor_pins = motor_pins
-        GPIO.setmode(GPIO.BCM)
-        for pin in motor_pins:
-            GPIO.setup(pin, GPIO.OUT)
-        self.pwm = [GPIO.PWM(pin, 100) for pin in motor_pins]
-        for pwm in self.pwm:
-            pwm.start(0)
 
-    # Simulation
-    def setup_motors():
-        GPIO.setmode(GPIO.BCM)  # Utilise la méthode simulée
-        GPIO.setup(18, GPIO.OUT)  # Simule la configuration du pin
-        pwm = GPIO.PWM(18, 1000)  # Simule la création du PWM
+        if GPIO_AVAILABLE:
+            print("Utilisation des GPIO du Raspberry Pi.")
+            GPIO.setmode(GPIO.BCM)
+            for pin in motor_pins:
+                GPIO.setup(pin, GPIO.OUT)
+            self.pwm = [GPIO.PWM(pin, 100) for pin in motor_pins]
+            for pwm in self.pwm:
+                pwm.start(0)
+        else:
+            print("Simulation des moteurs avec mock_gpio.")
+            self.pwm = [self.setup_motor_simulation(pin) for pin in motor_pins]
+
+    # Méthode pour simuler l'initialisation des moteurs (si on est en simulation)
+    def setup_motor_simulation(self, pin):
+        print(f"Simulation de l'initialisation du moteur sur le pin {pin}")
+        pwm = GPIO.PWM(pin, 1000)  # Simule la création du PWM
         pwm.start(50)  # Démarre le PWM avec un cycle de travail de 50%
         return pwm
+
+    def init_motors(self):
+        # Simulation de l'initialisation des moteurs
+        print("Initialisation des moteurs...")
+        GPIO.setmode(GPIO.BCM)
+        # Exemple de configuration de pins, vous pouvez les ajuster en fonction de votre setup
+        GPIO.setup(17, GPIO.OUT)  # Pin 17 pour un moteur
+        GPIO.setup(18, GPIO.OUT)  # Pin 18 pour un autre moteur
+        print("Moteurs initialisés.")
 
     def move_forward(self, speed=50):
         self._set_motor_speed(speed)
@@ -46,8 +77,10 @@ class MotorControl:
             pwm.ChangeDutyCycle(abs(speed))
 
     def cleanup(self):
-        GPIO.cleanup()
-
+        if GPIO_AVAILABLE:
+            GPIO.cleanup()
+        else:
+            print("Simulation terminée.")
 
 # class MotorControl:
 #     """Classe pour contrôler les moteurs du robot."""
@@ -85,3 +118,5 @@ class MotorControl:
 #     def cleanup(self):
 #         """Libère les ressources GPIO."""
 #         GPIO.cleanup()
+def init_motors():
+    return None

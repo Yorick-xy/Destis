@@ -1,0 +1,3 @@
+mqtt_broker: "mqtt://localhost"
+data_path: "data/dataset.csv"
+model_path: "models/trained_model.h5"

@@ -1,4 +1,4 @@
-# ai/speech_recognition.py
+# src/ai/speech_recognition.py
 
 import speech_recognition as sr
 
