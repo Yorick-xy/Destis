@@ -73,6 +73,3 @@ def load_data(data_path):
     # Exemple de données chargées
     data = {"example_data": [1, 2, 3, 4]}  # Exemple de données
     return data
-
-#def load_data(param):
-#    return None

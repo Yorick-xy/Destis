@@ -7,7 +7,9 @@ from .mock_gpio import GPIO
 #from mock_gpio import GPIO
 import os
 import sys
-sys.path.append('/Users/yorick/Documents/05_Dev/Destis/src/robot')
+
+folder_path = os.path.join(os.environ["HOME"], "Documents/05_Dev/Destis/src/robot")
+sys.path.append(folder_path)
 
 import mock_gpio as GPIO
 

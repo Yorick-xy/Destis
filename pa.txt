@@ -17,6 +17,10 @@ git remote add origin https://github.com/Yorick-xy/Destis.git
 git branch -M main
 git push -u origin main
 
+git commit -a -m "Modifications rapides"
+git pull origin main --rebase
+# (Résolution des conflits si nécessaire)
+git push origin main
 
 conda deactivate
 conda activate pytorch_env
