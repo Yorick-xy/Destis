@@ -16,3 +16,8 @@ git push -u origin main
 git remote add origin https://github.com/Yorick-xy/Destis.git
 git branch -M main
 git push -u origin main
+
+
+conda deactivate
+conda activate pytorch_env
+python /Users/yorick/Documents/05_Dev/Destis/src/main.py
