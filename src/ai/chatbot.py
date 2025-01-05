@@ -51,7 +51,7 @@ class Chatbot:
         self.chat_history_ids = self.model.generate(
             bot_input_ids,
             max_length=self.max_length,
-            pad_token_id=self.tokenizer.pad_token_id,
+            pad_token_id=self.tokenizer.eos_token_id, # pad_token_id=self.tokenizer.pad_token_id,
             temperature=self.temperature,
             do_sample=True,
             top_p=self.top_p,
