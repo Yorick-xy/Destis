@@ -1,13 +1,12 @@
 from ai import chatbot
 import os
 
-
 def main():
     # Construction dynamique du chemin vers le fichier config.yaml
     folder_path = os.path.join(os.environ["HOME"], "Documents/05_Dev/Destis/src/utils/config/config.yaml")
     print(f"Chemin du fichier config.yaml : {folder_path}")
 
-    # Chargement fictif des données (ajuster en fonction de tes besoins)
+    # Chargement fictif des données (ajuster en fonction des besoins)
     dataset_path = os.path.join("data", "dataset.csv")
     if os.path.exists(dataset_path):
         print(f"Chargement des données depuis {dataset_path}...")
