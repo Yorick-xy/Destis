@@ -37,7 +37,7 @@ Destis est un projet de robotique et d'automatisation domestique qui intègre l'
 
 - **chatbot**:
   - Emplacement "src/ai/chatbot.py", vous pouvez modifier les paramètres pour rendre plus ou moins fiable l'IA
-  - Si ce fichier est modifié, attendre à bien adapter le src/main.py en fonction.
+  - Si ce fichier est modifié, attention à bien adapter le src/main.py en fonction.
 
 ### Aperçu
 ![img.png](img.png)
